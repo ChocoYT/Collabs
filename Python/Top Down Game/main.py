@@ -2,6 +2,8 @@ import configparser
 import pygame
 import sys, os
 
+from player import Player
+
 pygame.init()
 
 if __name__ == '__main__':
@@ -22,6 +24,9 @@ if __name__ == '__main__':
     pygame.display.set_caption("Top Down Game")
     clock = pygame.time.Clock()
 
+    # Instances
+    player = Player((0, 0), 64, (255, 0, 0))
+
     run = True
     while run:
         for event in pygame.event.get():
@@ -29,6 +34,12 @@ if __name__ == '__main__':
                 run = False
 
         screen.fill((0, 0, 0))
+
+        player.move([])
+        player.update()
+        player.draw(screen)
+
+        print(f"X: {player.x} | Y: {player.y}")
 
         pygame.display.update()
         clock.tick(FPS)
